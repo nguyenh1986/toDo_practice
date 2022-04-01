@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <h2>Todo List</h2>
+      <% if (!todoList || todoList.length == 0) { %>
+        <p>There is no todo item yet!!!</p>
+     <% } else { %>
+        <% for (let i = 0; i < todoList.length; i++) { %>
+          <form method="POST" action="/todos/<%= i %>?_method=DELETE">
+            <label><%= todoList[i] %></label> 
+            <button type="submit">X</button>
+          </form>
+        <% } %>
+      <% } %>
+    </div>
+    <hr/>
+    <form method="POST" action="/todos">
+      <input type="text" name="todo" />
+      <button type="submit">Add Todo</button>
+    </form>
+  </body>
+</html>
